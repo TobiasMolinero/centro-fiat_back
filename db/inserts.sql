@@ -21,10 +21,6 @@ VALUES('rot001', 'Korazzo', 'Rotula', 7530, 11300),
 SELECT * FROM productos;
 SELECT cod_producto, descripcion FROM productos;
 
-INSERT INTO ingresos(fecha, cod_producto, cantidad)
-VALUES('2023-11-19', 'opt123', 2);
-SELECT * FROM ing;
+UPDATE productos SET stock = stock + 3 ; 
+SELECT cod_producto, stock FROM productos
 
-INSERT INTO salidas(fecha, cod_producto, cantidad)
-VALUES('2023-11-19', 'far032', 1);
-SELECT * FROM sal;
