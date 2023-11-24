@@ -7,14 +7,14 @@ export const all = (req, res) => {
     })
 };
 
-// export const one = (req, res) => {
-//     const cod_producto = req.params.id;
-//     pool.query(`SELECT * FROM productos WHERE cod_producto=${cod_producto};
-//     `, (error, results) => {
-//         if(error) throw error;
-//         res.json(results);
-//     })
-// };
+export const one = (req, res) => {
+    const cod_producto = req.params.id;
+    pool.query(`SELECT * FROM productos WHERE cod_producto='${cod_producto}';
+    `, (error, results) => {
+        if(error) throw error;
+        res.json(results);
+    })
+};
 
 export const create = (req, res) => {
     const {cod_producto, marca, descripcion, precio_costo, precio_venta, stock} = req.body;

@@ -22,5 +22,11 @@ SELECT * FROM productos;
 SELECT cod_producto, descripcion FROM productos;
 
 UPDATE productos SET stock = stock + 3 ; 
-SELECT cod_producto, stock FROM productos
+SELECT cod_producto, stock FROM productos;
+
+INSERT INTO usuarios(nombre_usuario, contraseña)
+VALUES('tobias', '12345');
+SELECT  * FROM usuarios;
+
+
 
