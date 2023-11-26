@@ -1,7 +1,7 @@
 import { pool } from '../db.js'
 
 export const all = (req, res) => {
-    pool.query('SELECT * FROM productos WHERE estado = 1;', (error, results) => {
+    pool.query('SELECT * FROM productos WHERE estado = 1 ORDER BY cod_producto ASC', (error, results) => {
         if(error) throw error;
         res.json(results);
     })
@@ -9,7 +9,7 @@ export const all = (req, res) => {
 
 export const one = (req, res) => {
     const cod_producto = req.params.id;
-    pool.query(`SELECT * FROM productos WHERE cod_producto='${cod_producto}';
+    pool.query(`SELECT * FROM productos WHERE cod_producto='${cod_producto}' AND estado = 1;
     `, (error, results) => {
         if(error) throw error;
         res.json(results);
@@ -17,9 +17,9 @@ export const one = (req, res) => {
 };
 
 export const create = (req, res) => {
-    const {cod_producto, marca, descripcion, precio_costo, precio_venta, stock} = req.body;
-    pool.query(`INSERT INTO productos(cod_producto, marca, descripcion, precio_costo, precio_venta, stock)
-                VALUES('${cod_producto}', '${marca}', '${descripcion}', ${precio_costo}, ${precio_venta}, ${stock});
+    const {cod_producto, marca, descripcion, costo, precio_venta, stock} = req.body;
+    pool.query(`INSERT INTO productos(cod_producto, marca, descripcion, costo, precio_venta, stock)
+                VALUES('${cod_producto}', '${marca}', '${descripcion}', ${costo}, ${precio_venta}, ${stock});
     `, (error, results) => {
         if(error) throw error;
         res.send('Se registró el producto con exito.');
@@ -53,7 +53,7 @@ export const del = (req, res) => {
 }
 
 export const cargarSelect = (req, res) => {
-    pool.query('SELECT cod_producto, descripcion FROM productos;', (error, results) => {
+    pool.query('SELECT cod_producto, descripcion FROM productos WHERE estado = 1', (error, results) => {
         if(error)throw error;
         res.json(results);
     })

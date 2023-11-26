@@ -10,7 +10,7 @@ import { all,
 const router = Router()
 
 router.get('/productos', all);
-router.get('/productos/:id', one)
+router.get('/productos/select/:id', one)
 router.get('/productos/cargarselect', cargarSelect)
 router.post('/productos/create', create);
 router.put('/productos/edit/:id', edit);
